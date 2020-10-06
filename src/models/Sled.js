@@ -13,6 +13,7 @@ class Sled {
         }
         this.gifts.push(gift)
         this.giftsWeight += gift.weight
+        console.log("Yeah, gift added");
     }
 
     deliverGifts = () => {

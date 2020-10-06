@@ -3,13 +3,16 @@ class Dwarf {
         this.giftsWeight = 0
     }
 
-    prepareGift = (gift) => {
-        if (this.giftsWeight + gift.weight > 12) {
+    prepareGiftAsync = async (gift) => {
+        if (this.giftsWeight + gift.weight >= 12) {
             console.error("Refusing to prepare gift")
-            return false
+            throw new Error("The sled is full, boy!")
         }
-        setTimeout(() => {}, gift.preparationTime)
-        return true
+
+        this.giftsWeight += gift.weight
+        return new Promise(resolve => {
+            setTimeout(resolve, gift.preparationTime);
+        });
     }
 }
 
