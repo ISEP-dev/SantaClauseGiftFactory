@@ -10,20 +10,20 @@ export class DwarfScreen {
 
     constructor(dwarf, sled) {
         /* Implement the sled screen */
-        this.sledScreen = new SledScreen(sled);
+        this.sledScreen = new SledScreen(sled)
 
         this.dwarf = dwarf
         this.sled = sled
 
-        this.giftButtonSelection();
+        this.giftButtonSelection()
         this.giftSelector()
     }
 
     /* Event of the gifts selection */
     giftSelector = () => {
         $("#gift-selection").change((e) => {
-            const isValid = e.currentTarget.value === "";
-            $("#gift-selection-button").prop("disabled", isValid);
+            const isValid = e.currentTarget.value === ""
+            $("#gift-selection-button").prop("disabled", isValid)
         })
     }
 
@@ -48,9 +48,9 @@ export class DwarfScreen {
     getGiftToPrepare = () => {
         switch ($("#gift-selection").val()) {
             case "big":
-                return this.bigGift;
+                return this.bigGift
             case "normal":
-                return this.normalGift;
+                return this.normalGift
             case "small":
                 return this.smallGift
         }
@@ -59,11 +59,11 @@ export class DwarfScreen {
     /* Method to launch when gift being prepared */
     toggleLoadingGift = (isLoading) => {
         if (isLoading) {
-            $("#gift-selection-button").hide();
-            $("#gift-is-preparing").show();
+            $("#gift-selection-button").hide()
+            $("#gift-is-preparing").show()
         } else {
-            $("#gift-selection-button").show();
-            $("#gift-is-preparing").hide();
+            $("#gift-selection-button").show()
+            $("#gift-is-preparing").hide()
         }
 
     }

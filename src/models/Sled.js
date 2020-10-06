@@ -9,17 +9,17 @@ class Sled {
             return new Promise((resolve, reject) => reject("Sled is empty !"))
         }
 
-        return axios.post("http://localhost:8081", {gifts: this.gifts});
+        return axios.post("http://localhost:8081", {gifts: this.gifts})
     }
 
     addGift = (giftToAdd) => {
-        this.gifts.push(giftToAdd);
-        this.totalWeight += giftToAdd.weight;
+        this.gifts.push(giftToAdd)
+        this.totalWeight += giftToAdd.weight
     }
 
     resetSled = () => {
-        this.gifts = [];
-        this.totalWeight = 0;
+        this.gifts = []
+        this.totalWeight = 0
     }
 }
 

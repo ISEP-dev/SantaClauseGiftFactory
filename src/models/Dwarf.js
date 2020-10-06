@@ -4,7 +4,7 @@ class Dwarf {
             if (sled.totalWeight + gift.weight > 12) {
                 return reject("Sled is full !")
             }
-            setTimeout(resolve, gift.preparationTime);
+            setTimeout(resolve, gift.preparationTime)
         });
     }
 }
