@@ -14,7 +14,30 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root">
-      <!-- TODO -->
+      <div id="dwarf">
+        <div class="dwarf-bubble d-flex flex-column">
+          <label for="gift-selection">What's type of gift do you want ?</label>
+          <select class="custom-select w-50" name="gift" id="gift-selection">
+            <option value="">---</option>
+            <option value="big">Big</option>
+            <option value="medium">Medium</option>
+            <option value="small">Small</option>
+          </select>
+          <button disabled id="gift-selection-button" class="btn btn-primary mt-4">
+            Hmm, ok.
+          </button>
+          <div id="gift-is-preparing">
+            Let's me some minutes..
+            <div class="spinner-border text-primary" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="gift-list">
+
+      </div>
     </div>
   </body>
 </html>
