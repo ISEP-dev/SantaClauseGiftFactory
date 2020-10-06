@@ -1,36 +1,25 @@
 const axios = require('axios').default
 
 class Sled {
-    constructor() {
-        this.gifts = []
-        this.giftsWeight = 0
-    }
+    gifts = [];
+    totalWeight = 0;
 
-    addGift = gift => {
-        if (this.giftsWeight + gift.weight > 12) {
-            console.error("Too heavy")
-            return
+    deliverGiftsPromise = () => {
+        if (!this.gifts.length) {
+            return new Promise((resolve, reject) => reject("Sled is empty !"))
         }
-        this.gifts.push(gift)
-        this.giftsWeight += gift.weight
-        console.log("Yeah, gift added");
+
+        return axios.post("http://localhost:8081", {gifts: this.gifts});
     }
 
-    deliverGifts = () => {
-        axios.post("http://localhost:8081", {gifts: this.gifts}).then(() => {
-            console.log("Gift delivered")
-        }).catch(() => {
-            console.error("Stupid reindeers")
-        })
+    addGift = (giftToAdd) => {
+        this.gifts.push(giftToAdd);
+        this.totalWeight += giftToAdd.weight;
     }
 
-    toString = () => {
-        console.log("number of gifts: " + this.gifts.length)
-        let totalWeight = 0
-        for (let i = 0; i < this.gifts.length; i++) {
-            totalWeight += this.gifts[i].weight
-        }
-        console.log("Total weight: " , totalWeight)
+    resetSled = () => {
+        this.gifts = [];
+        this.totalWeight = 0;
     }
 }
 

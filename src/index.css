@@ -33,3 +33,48 @@ body {
 #gift-is-preparing {
     display: none;
 }
+
+#sled {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 3rem;
+    background: white;
+    border: solid 1px;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+#deliver-is-loading {
+    display: none;
+}
+
+#santa-clause {
+    display: none;
+    background-image: url("asset/santa-clause.png");
+    width: 80%;
+    height: 80%;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    animation-duration: 6s;
+    animation-name: slidein;
+    animation-iteration-count: infinite;
+
+    position: absolute;
+    bottom: 0;
+}
+
+@keyframes slidein {
+    from {
+        margin-left: 0%;
+        width: 50rem;
+    }
+
+    to {
+        margin-left: 100%;
+        width: 0rem;
+    }
+}
+
+.sled-head { font-weight: 600; }
