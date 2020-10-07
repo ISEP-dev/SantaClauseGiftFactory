@@ -1,6 +1,7 @@
 import $ from "jquery";
 import Gift from "../models/Gift";
 import {SledScreen} from "./SledScreen";
+import {AlertService} from "../services/AlertService"
 
 export class DwarfScreen {
 
@@ -10,6 +11,7 @@ export class DwarfScreen {
 
     constructor(dwarf, sled) {
         /* Implement the sled screen */
+        this.alertService = new AlertService()
         this.sledScreen = new SledScreen(sled)
 
         this.dwarf = dwarf
@@ -33,13 +35,13 @@ export class DwarfScreen {
             const giftToPrepare = this.getGiftToPrepare()
 
             this.toggleLoadingGift(true)
-
+            
             this.dwarf.prepareGiftPromise(giftToPrepare, this.sled)
                 .then(_ => {
                     this.sled.addGift(giftToPrepare)
                     this.sledScreen.updateGiftsNumberDisplayed()
                 })
-                .catch(e => $("#alert-error").text(e).parent().removeClass("d-none").fadeTo(2000, 500).fadeOut(500, () => $("#alert-error").fadeOut(500)))
+                .catch(e => this.alertService.show(e))
                 .finally(() => this.toggleLoadingGift(false))
         })
     }

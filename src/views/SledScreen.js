@@ -1,13 +1,12 @@
 import $ from "jquery";
+import {AlertService} from "../services/AlertService";
 
 export class SledScreen {
     constructor(sled) {
+        this.alertService = new AlertService()
         this.sled = sled
-
         this.deliverButton()
-
         this.updateGiftsNumberDisplayed()
-
     }
 
     /* Button to deliver the gifts in the sled */
@@ -17,10 +16,14 @@ export class SledScreen {
 
             this.sled.deliverGiftsPromise()
                 .then(() => {
+                    $("#santa-clause").show()
                     this.sled.resetSled()
                     this.updateGiftsNumberDisplayed()
                 })
-                .catch(e => alert(e))
+                .catch(e => {
+                    this.alertService.show(e)
+                    $("#rudolph-hungry").show()
+                })
                 .finally(() => this.toggleLoadingDelivery(false))
         })
     }
@@ -42,7 +45,6 @@ export class SledScreen {
             $("#dwarf").hide()
             $("#deliver-button").hide()
             $("#deliver-is-loading").show()
-            $("#santa-clause").show()
         } else {
             $("#dwarf").show()
             $("#deliver-button").show()
