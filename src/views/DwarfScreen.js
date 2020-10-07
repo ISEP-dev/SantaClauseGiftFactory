@@ -39,7 +39,7 @@ export class DwarfScreen {
                     this.sled.addGift(giftToPrepare)
                     this.sledScreen.updateGiftsNumberDisplayed()
                 })
-                .catch(e => alert(e))
+                .catch(e => $("#alert-error").text(e).parent().removeClass("d-none").fadeTo(2000, 500).fadeOut(500, () => $("#alert-error").fadeOut(500)))
                 .finally(() => this.toggleLoadingGift(false))
         })
     }
