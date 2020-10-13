@@ -76,7 +76,14 @@ body {
     background: url("asset/rudolph.png") no-repeat center;
     width: 100%;
     height: 100%;
-    margin: auto auto;
+}
+
+#rudolph-text {
+    display: none;
+    position: absolute;
+    top: 5%;
+    left: 48%;
+    transform: translateX(-50%);
 }
 
 @keyframes slidein {
@@ -93,4 +100,10 @@ body {
 
 .sled-head { font-weight: 600; }
 
-#parent-alert-error { display: none; }
+#parent-alert-error {
+    display: block;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+}

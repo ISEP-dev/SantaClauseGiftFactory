@@ -1,19 +1,19 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import './index.css'
-import Dwarf from "./models/Dwarf"
-import Sled from "./models/Sled"
 import $ from 'jquery'
 import {SledService} from "./services/SledService"
 import AlertService from "./services/AlertService"
 import {DwarfService} from "./services/DwarfService"
+import GiftService from "./services/giftService"
 
-$(document).ready(() => { new App(); })
+$(document).ready(() => {
+    new App();
+})
 
 class App {
-    dwarf = new Dwarf()
-    sled = new Sled()
     dwarfService = new DwarfService()
     sledService = new SledService()
+    giftService = new GiftService()
     alertService = new AlertService()
 
     constructor() {
@@ -24,14 +24,14 @@ class App {
     /* Event of the button selection */
     giftButtonSelection = () => {
         this.dwarfService.buttonGiftSelection.click(() => {
-            const giftToPrepare = this.dwarfService.getGiftToPrepare()
+            const giftToPrepare = this.giftService.getGiftToPrepare(this.dwarfService.inputGiftSelection.val())
 
             this.dwarfService.toggleLoadingGift(true)
 
-            this.dwarf.prepareGiftPromise(giftToPrepare, this.sled)
+            this.dwarfService.prepareGiftPromise(giftToPrepare, this.sledService)
                 .then(_ => {
-                    this.sled.addGift(giftToPrepare)
-                    this.sledService.updateGiftsNumberDisplayed(this.sled.gifts, this.sled.totalWeight)
+                    this.sledService.addGift(giftToPrepare)
+                    this.sledService.updateGiftsNumberDisplayed(this.sledService.gifts, this.sledService.totalWeight)
                 })
                 .catch(e => this.alertService.show(e))
                 .finally(() => this.dwarfService.toggleLoadingGift(false))
@@ -43,14 +43,20 @@ class App {
         this.sledService.buttonToDeliverGift.click(() => {
             this.sledService.toggleLoadingDelivery(true)
 
-            this.sled.deliverGiftsPromise()
+            this.sledService.deliverGiftsPromise()
                 .then(() => {
-                    this.sled.resetSled()
-                    this.sledService.updateGiftsNumberDisplayed(this.sled.gifts, this.sled.totalWeight)
+                    this.sledService.resetSled()
+                    this.sledService.updateGiftsNumberDisplayed(this.sledService.gifts, this.sledService.totalWeight)
                     this.sledService.fadeToAnimation(this.sledService.santaClausImage, 5500)
                 })
                 .catch(e => {
-                    this.sledService.fadeToAnimation(this.sledService.rudolphImage, 6000)
+                    if (!e.response) {
+                        this.alertService.show("The request did not end properly: " + e)
+                    } else if (e.response.status === 451) {
+                        this.sledService.fadeToAnimation(this.sledService.rudolphImage, 6000)
+                        this.sledService.fadeToAnimation(this.sledService.rudolphText, 6000)
+                    }
+
                 })
                 .finally(() => this.sledService.toggleLoadingDelivery(false))
         })

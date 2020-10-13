@@ -1,9 +1,11 @@
 import $ from "jquery";
+import axios from "axios"
 
 export class SledService {
     buttonToDeliverGift = $("#deliver-button")
     santaClausImage = $("#santa-clause")
     rudolphImage = $("#rudolph-hungry")
+    rudolphText = $("#rudolph-text")
     isDeliveryLoading = $("#deliver-is-loading")
 
     bigGiftNumberInTheSled = $("#bigGiftNumber")
@@ -13,6 +15,25 @@ export class SledService {
 
     constructor() {
         this.updateGiftsNumberDisplayed([], 0)
+        this.resetSled()
+    }
+
+    deliverGiftsPromise = () => {
+        if (!this.gifts.length) {
+            return new Promise((resolve, reject) => reject("Sled is empty !"))
+        }
+
+        return axios.post("http://localhost:8081", {gifts: this.gifts})
+    }
+
+    addGift = (giftToAdd) => {
+        this.gifts = [...this.gifts, giftToAdd]
+        this.totalWeight += giftToAdd.weight
+    }
+
+    resetSled = () => {
+        this.gifts = []
+        this.totalWeight = 0
     }
 
     /* Update gifts number displayed in the sled */
