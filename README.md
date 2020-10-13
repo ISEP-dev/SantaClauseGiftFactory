@@ -1,5 +1,5 @@
 # Santa Claus Gift Factory - JS (Asynchronous) project
-The project consists in build a gift factory. The user can selected gifts with different size (small, normal, big) and each size has different weight (1kg, 2kg, 5kg).
-After we have selected a gift, the dwarf prepare it. He needs some minutes to make it. When, it's done he put it on the sled. 
-The sled cannot contains more than 12 kg. In fact, the dwarf must refused the next gift if the sled is completely full. 
-At the end, you can delivered the sled with the santa claus. But warn it! When the reineideers are hungry, the delivery failed. 
+The project is to build a gift factory. The user can select gifts with various size (small, normal, big) and each size has an associate weight (1 kg, 2 kg, 5 kg).  
+After selecting a gift, the dwarf prepare it. He needs some times to make it. When, it's done he put it in the sled.  
+The sled cannot contain more than 12 kg. In fact, the dwarf will refuse to prepare the next gift if the sled is completely full. 
+At the end, you can deliver the sled with the santa claus. Be careful ! When the reindeer are hungry, the delivery will fail. 
