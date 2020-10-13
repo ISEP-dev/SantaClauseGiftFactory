@@ -1,6 +1,6 @@
 import $ from "jquery";
 
-export class AlertService {
+class AlertService {
     parentAlertUI = $("#parent-alert-error")
     alertUI = $("#alert-error")
     alertCloseButton = $("#alert-close-button")
@@ -20,3 +20,4 @@ export class AlertService {
         this.alertUI.empty()
     }
 }
+export default AlertService

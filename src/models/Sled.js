@@ -1,8 +1,9 @@
-const axios = require('axios').default
+import axios from 'axios'
 
 class Sled {
-    gifts = [];
-    totalWeight = 0;
+    constructor() {
+        this.resetSled()
+    }
 
     deliverGiftsPromise = () => {
         if (!this.gifts.length) {
@@ -13,7 +14,7 @@ class Sled {
     }
 
     addGift = (giftToAdd) => {
-        this.gifts.push(giftToAdd)
+        this.gifts = [...this.gifts, giftToAdd]
         this.totalWeight += giftToAdd.weight
     }
 

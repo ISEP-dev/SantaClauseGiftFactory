@@ -3,9 +3,9 @@ import './index.css'
 import Dwarf from "./models/Dwarf"
 import Sled from "./models/Sled"
 import $ from 'jquery'
-import {SledService} from "./services/SledService";
-import {AlertService} from "./services/AlertService";
-import {DwarfService} from "./services/DwarfService";
+import {SledService} from "./services/SledService"
+import AlertService from "./services/AlertService"
+import {DwarfService} from "./services/DwarfService"
 
 $(document).ready(() => { new App(); })
 
@@ -17,8 +17,8 @@ class App {
     alertService = new AlertService()
 
     constructor() {
-        this.giftButtonSelection();
-        this.deliverButton();
+        this.giftButtonSelection()
+        this.deliverButton()
     }
 
     /* Event of the button selection */
