@@ -1,4 +1,4 @@
-import $ from "jquery";
+import $ from "jquery"
 
 class AlertService {
     parentAlertUI = $("#parent-alert-error")
@@ -6,7 +6,7 @@ class AlertService {
     alertCloseButton = $("#alert-close-button")
 
     constructor() {
-        this.hide();
+        this.hide()
         this.alertCloseButton.click(() => this.hide())
     }
 

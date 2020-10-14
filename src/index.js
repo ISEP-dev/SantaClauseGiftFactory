@@ -7,7 +7,7 @@ import GiftService from "./services/giftService"
 import './index.css'
 
 $(document).ready(() => {
-    new App();
+    new App()
 })
 
 class App {

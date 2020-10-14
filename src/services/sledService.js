@@ -1,4 +1,4 @@
-import $ from "jquery";
+import $ from "jquery"
 import axios from "axios"
 
 class SledService {
@@ -45,7 +45,6 @@ class SledService {
         this.updateGiftsNumberDisplayed([], 0)
     }
 
-    /* Update gifts number displayed in the sled */
     updateGiftsNumberDisplayed = (gifts, totalWeight) => {
         this.buttonToDeliverGift.prop("disabled", !gifts.length)
 
@@ -69,8 +68,8 @@ class SledService {
 
     fadeToAnimation = (element, time) => {
         element.fadeTo(time, 500).slideUp(500, () => {
-            element.slideUp(500);
-        });
+            element.slideUp(500)
+        })
     }
 }
 

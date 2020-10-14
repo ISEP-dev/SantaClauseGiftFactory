@@ -6,7 +6,6 @@ class GiftService {
     normalGift = new Gift(2, 1000)
     bigGift = new Gift(5, 2000)
 
-    /* Get selected gift by size */
     getGiftToPrepare = (giftTypeSelected) => {
         switch (giftTypeSelected) {
             case "big":
