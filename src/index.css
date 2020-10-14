@@ -57,7 +57,7 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
 
-    animation-duration: 6s;
+    animation-duration: 2s;
     animation-name: slidein;
     animation-iteration-count: infinite;
 
@@ -65,7 +65,7 @@ body {
     bottom: 0;
 }
 
-.rudolph-hungry-container {
+.delivery-response-container {
     display: flex;
     width: 100%;
 }
@@ -78,7 +78,15 @@ body {
     height: 100%;
 }
 
-#rudolph-text {
+#santa-clause-success {
+    display: none;
+    background-size: contain;
+    background: url("asset/santa-claus-success.png") no-repeat center;
+    width: 100%;
+    height: 100%;
+}
+
+.response-text {
     display: none;
     position: absolute;
     top: 5%;

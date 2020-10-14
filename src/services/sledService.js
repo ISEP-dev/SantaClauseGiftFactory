@@ -4,6 +4,8 @@ import axios from "axios"
 class SledService {
     buttonToDeliverGift = $("#deliver-button")
     santaClausImage = $("#santa-clause")
+    santaClausSuccessImage = $("#santa-clause-success")
+    santaClausSuccessText = $("#santa-clause-success-text")
     rudolphImage = $("#rudolph-hungry")
     rudolphText = $("#rudolph-text")
     isDeliveryLoading = $("#deliver-is-loading")

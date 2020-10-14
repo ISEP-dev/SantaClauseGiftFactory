@@ -45,23 +45,29 @@ class App {
 
     /* Button to deliver the gifts in the sled */
     deliverButton = () => {
-        this.sledService.buttonToDeliverGift.click(() => {
-            this.sledService.toggleLoadingDelivery(true)
+        this.sledService.buttonToDeliverGift.click(async () => {
+            try {
+                this.dwarfService.buttonGiftSelection.hide()
+                this.sledService.toggleLoadingDelivery(true)
+                this.sledService.santaClausImage.show()
+                await this.sledService.deliverGiftsPromise()
 
-            this.sledService.deliverGiftsPromise()
-                .then(() => {
-                    this.sledService.resetSled()
-                    this.sledService.resetGiftsNumbersDisplayed()
-                    this.sledService.fadeToAnimation(this.sledService.santaClausImage, 5500)
-                })
-                .catch(e => {
-                    if (!e.response) {
-                        this.alertService.show("The request did not end properly: " + e)
-                        return
-                    }
-                    this.deliveryErrorAction(e)
-                })
-                .finally(() => this.sledService.toggleLoadingDelivery(false))
+                this.sledService.resetSled()
+                this.sledService.resetGiftsNumbersDisplayed()
+
+                this.sledService.fadeToAnimation(this.sledService.santaClausSuccessImage, 2000)
+                this.sledService.fadeToAnimation(this.sledService.santaClausSuccessText, 2000)
+            } catch (e) {
+                if (!e.response) {
+                    this.alertService.show("The request did not end properly: " + e)
+                    return
+                }
+                this.deliveryErrorAction(e)
+            } finally {
+                this.dwarfService.buttonGiftSelection.show()
+                this.sledService.santaClausImage.hide()
+                this.sledService.toggleLoadingDelivery(false)
+            }
         })
     }
 
@@ -69,8 +75,8 @@ class App {
     deliveryErrorAction = (e) => {
         switch (e.response.status) {
             case 451:
-                this.sledService.fadeToAnimation(this.sledService.rudolphImage, 6000)
-                this.sledService.fadeToAnimation(this.sledService.rudolphText, 6000)
+                this.sledService.fadeToAnimation(this.sledService.rudolphImage, 2000)
+                this.sledService.fadeToAnimation(this.sledService.rudolphText, 2000)
                 break
             case 406:
                 this.alertService.show(e.response.message)
