@@ -1,7 +1,7 @@
 import $ from "jquery";
 import axios from "axios"
 
-export class SledService {
+class SledService {
     buttonToDeliverGift = $("#deliver-button")
     santaClausImage = $("#santa-clause")
     rudolphImage = $("#rudolph-hungry")
@@ -64,3 +64,5 @@ export class SledService {
         });
     }
 }
+
+export default SledService

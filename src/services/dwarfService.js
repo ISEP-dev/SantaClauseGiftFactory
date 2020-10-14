@@ -1,6 +1,6 @@
 import $ from "jquery"
 
-export class DwarfService {
+class DwarfService {
 
     inputGiftSelection = $("#gift-selection")
     buttonGiftSelection = $("#gift-selection-button")
@@ -35,3 +35,5 @@ export class DwarfService {
         }
     }
 }
+
+export default DwarfService

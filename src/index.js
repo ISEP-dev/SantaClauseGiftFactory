@@ -1,10 +1,10 @@
-import 'bootstrap/dist/css/bootstrap.css'
-import './index.css'
 import $ from 'jquery'
-import {SledService} from "./services/SledService"
-import AlertService from "./services/AlertService"
-import {DwarfService} from "./services/DwarfService"
+import 'bootstrap/dist/css/bootstrap.css'
+import SledService from "./services/sledService"
+import AlertService from "./services/alertService"
+import DwarfService from "./services/dwarfService"
 import GiftService from "./services/giftService"
+import './index.css'
 
 $(document).ready(() => {
     new App();
