@@ -67,17 +67,17 @@ class App {
 
     /* Action to do after a delivery error */
     deliveryErrorAction = (e) => {
-        switch (e) {
-            case e.response.status === 451:
+        switch (e.response.status) {
+            case 451:
                 this.sledService.fadeToAnimation(this.sledService.rudolphImage, 6000)
                 this.sledService.fadeToAnimation(this.sledService.rudolphText, 6000)
-                break;
-            case e.response.status === 406:
+                break
+            case 406:
                 this.alertService.show(e.response.message)
-                break;
+                break
             default:
                 this.alertService.show(e)
-                break;
+                break
         }
     }
 }
