@@ -1,4 +1,4 @@
-import Gift from "../models/Gift"
+import Gift from "../models/gift"
 
 class GiftService {
 
