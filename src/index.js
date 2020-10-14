@@ -24,12 +24,17 @@ class App {
     /* Event of the button selection */
     giftButtonSelection = () => {
         this.dwarfService.buttonGiftSelection.click(() => {
-            const giftToPrepare = this.giftService.getGiftToPrepare(this.dwarfService.inputGiftSelection.val())
+            const giftTypeSelected = this.dwarfService.inputGiftSelection.val()
+            if (giftTypeSelected === "") {
+                this.alertService.show("You need to select gift type before this.")
+                return
+            }
+            const giftToPrepare = this.giftService.getGiftToPrepare(giftTypeSelected)
 
             this.dwarfService.toggleLoadingGift(true)
 
             this.dwarfService.prepareGiftPromise(giftToPrepare, this.sledService)
-                .then(_ => {
+                .then(() => {
                     this.sledService.addGift(giftToPrepare)
                     this.sledService.updateGiftsNumberDisplayed(this.sledService.gifts, this.sledService.totalWeight)
                 })
@@ -46,20 +51,34 @@ class App {
             this.sledService.deliverGiftsPromise()
                 .then(() => {
                     this.sledService.resetSled()
-                    this.sledService.updateGiftsNumberDisplayed(this.sledService.gifts, this.sledService.totalWeight)
+                    this.sledService.resetGiftsNumbersDisplayed()
                     this.sledService.fadeToAnimation(this.sledService.santaClausImage, 5500)
                 })
                 .catch(e => {
                     if (!e.response) {
                         this.alertService.show("The request did not end properly: " + e)
-                    } else if (e.response.status === 451) {
-                        this.sledService.fadeToAnimation(this.sledService.rudolphImage, 6000)
-                        this.sledService.fadeToAnimation(this.sledService.rudolphText, 6000)
+                        return
                     }
-
+                    this.deliveryErrorAction(e)
                 })
                 .finally(() => this.sledService.toggleLoadingDelivery(false))
         })
+    }
+
+    /* Action to do after a delivery error */
+    deliveryErrorAction = (e) => {
+        switch (e) {
+            case e.response.status === 451:
+                this.sledService.fadeToAnimation(this.sledService.rudolphImage, 6000)
+                this.sledService.fadeToAnimation(this.sledService.rudolphText, 6000)
+                break;
+            case e.response.status === 406:
+                this.alertService.show(e.response.message)
+                break;
+            default:
+                this.alertService.show(e)
+                break;
+        }
     }
 }
 

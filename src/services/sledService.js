@@ -14,13 +14,18 @@ class SledService {
     totalWeightSled = $("#totalWeightSled")
 
     constructor() {
-        this.updateGiftsNumberDisplayed([], 0)
+        this.resetGiftsNumbersDisplayed()
         this.resetSled()
     }
 
     deliverGiftsPromise = () => {
         if (!this.gifts.length) {
-            return new Promise((resolve, reject) => reject("Sled is empty !"))
+            return new Promise((resolve, reject) => reject({
+                response: {
+                    status: 406,
+                    message: "NotAcceptable Error : Sled is empty"
+                },
+            }))
         }
 
         return axios.post("http://localhost:8081", {gifts: this.gifts})
@@ -34,6 +39,10 @@ class SledService {
     resetSled = () => {
         this.gifts = []
         this.totalWeight = 0
+    }
+
+    resetGiftsNumbersDisplayed = () => {
+        this.updateGiftsNumberDisplayed([], 0)
     }
 
     /* Update gifts number displayed in the sled */
