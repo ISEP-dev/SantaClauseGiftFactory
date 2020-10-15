@@ -14,16 +14,16 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root" class="d-flex flex-row">
-      <div id="dwarf">
-        <div class="dwarf-bubble d-flex flex-column">
+      <div class="d-flex flex-column align-items-center w-50">
+        <div class="d-flex flex-column w-100 p-5">
           <label for="gift-selection">What type of gift do you want ?</label>
-          <select class="custom-select w-50" name="gift" id="gift-selection">
+          <select class="custom-select w-75" name="gift" id="gift-selection">
             <option value="">---</option>
             <option value="big">Big</option>
             <option value="normal">Normal</option>
             <option value="small">Small</option>
           </select>
-          <button disabled id="gift-selection-button" class="btn btn-primary mt-4">
+          <button disabled id="gift-selection-button" class="btn btn-primary mt-4 w-25">
             Hmm, ok.
           </button>
           <div id="gift-is-preparing">
@@ -33,49 +33,64 @@
             </div>
           </div>
         </div>
+        <div id="dwarf" class="w-50 h-50 pt-3"></div>
       </div>
+
+      <div class="sled-container d-flex flex-column align-items-center w-50">
+        <div id="sled" class="mx-auto my-3 bg-white p-3 shadow-sm w-75 rounded-lg border-light">
+          <div class="font-weight-bold">Gift listed in the sled :</div>
+          <ul class="list-group mt-2">
+            <li class="list-group-item">
+              x<span id="bigGiftNumber"></span>
+              Big gift
+            </li>
+            <li class="list-group-item">
+              x<span id="normalGiftNumber"></span>
+              Normal gift
+            </li>
+            <li class="list-group-item">
+              x<span id="smallGiftNumber"></span>
+              Small gift
+            </li>
+            <li class="list-group-item bg-light">
+              Total weight:
+              <span id="totalWeightSled"></span>
+              kg
+            </li>
+          </ul>
+          <button class="btn btn-primary mt-2" id="deliver-button" >Deliver !</button>
+          <div id="deliver-is-loading">
+            Ohohohohoh.. !
+            <div class="spinner-border text-primary" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex flex-row align-items-center  justify-content-center w-100 h-100">
+          <div class="present-img w-25 h-50"></div>
+          <div class="present-img w-25 h-50"></div>
+          <div class="present-img w-25 h-50"></div>
+
+        </div>
+      </div>
+
+
       <div id="parent-alert-error" class="alert alert-danger alert-link text-center alert-dismissible fade show" role="alert">
         <span id="alert-error"></span>
         <button type="button" class="close" data-dismiss="alert" id="alert-close-button">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-
-      <div id="sled">
-        <div class="sled-head">Gift listed in the sled :</div>
-        <ul class="list-group mt-2">
-          <li class="list-group-item">
-            x<span id="bigGiftNumber"></span>
-            Big gift
-          </li>
-          <li class="list-group-item">
-            x<span id="normalGiftNumber"></span>
-            Normal gift
-          </li>
-          <li class="list-group-item">
-            x<span id="smallGiftNumber"></span>
-            Small gift
-          </li>
-          <li class="list-group-item bg-light">
-            Total weight:
-            <span id="totalWeightSled"></span>
-            kg
-          </li>
-        </ul>
-        <button class="btn btn-primary mt-2" id="deliver-button" >Deliver !</button>
-        <div id="deliver-is-loading">
-          Ohohohohoh.. !
-          <div class="spinner-border text-primary" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
-        </div>
+      <div id="santa-clause" class="position-absolute"></div>
+      <div id="rudolph-response-container" class="w-100 h-100 position-absolute">
+        <div id="rudolph-hungry" class="w-100 h-100"></div>
+        <div id="rudolph-text" class="response-text text-center h1 text-white position-absolute">I am hungry !</div>
       </div>
-      <div id="santa-clause"></div>
-      <div class="delivery-response-container">
-        <div id="santa-clause-success"></div>
-        <div id="rudolph-hungry"></div>
-        <div id="santa-clause-success-text" class="response-text text-center h1">I succeed the delivery !</div>
-        <div id="rudolph-text" class="response-text text-center h1">I am hungry !</div>
+      <div id="santa-clause-success-container" class="w-100 h-100 position-absolute">
+        <div id="santa-clause-success" class="w-100 h-100"></div>
+        <div id="santa-clause-success-text" class="response-text text-center h1 text-white position-absolute">
+          I succeed the delivery !
+        </div>
       </div>
     </div>
   </body>

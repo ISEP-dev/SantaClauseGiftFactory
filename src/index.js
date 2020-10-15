@@ -55,8 +55,7 @@ class App {
                 this.sledService.resetSled()
                 this.sledService.resetGiftsNumbersDisplayed()
 
-                this.sledService.fadeToAnimation(this.sledService.santaClausSuccessImage, 2000)
-                this.sledService.fadeToAnimation(this.sledService.santaClausSuccessText, 2000)
+                this.sledService.fadeToAnimation(this.sledService.santaClausSuccess, 2000)
             } catch (e) {
                 if (!e.response) {
                     this.alertService.show("The request did not end properly: " + e)
@@ -75,8 +74,7 @@ class App {
     deliveryErrorAction = (e) => {
         switch (e.response.status) {
             case 451:
-                this.sledService.fadeToAnimation(this.sledService.rudolphImage, 2000)
-                this.sledService.fadeToAnimation(this.sledService.rudolphText, 2000)
+                this.sledService.fadeToAnimation(this.sledService.rudolphImageError, 2000)
                 break
             case 406:
                 this.alertService.show(e.response.message)
